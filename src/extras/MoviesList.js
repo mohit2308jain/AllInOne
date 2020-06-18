@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import MovieCard from './MovieCard';
+import MovieCard from '../components/MovieCard';
 import MovieCard2 from './MovieCard2';
 import { connect } from 'react-redux';
 import { fetchMoviesWithDetails } from '../redux/ActionCreater';

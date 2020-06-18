@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
 
-import MoviesList from './components/MoviesList';
-import MovieList from './components/MovieList';
+import MovieList from './components/Movies/MovieList';
 
 function App() {
   return (

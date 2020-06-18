@@ -3,7 +3,9 @@ import OMDBMovieApi from '../apis/OMDBMovieApi';
 const key = '756abb2f';
 export const fetchMoviesWithDetails = (term) => {
     return async (dispatch, getState) => {
-        const movieslist = await dispatch(fetchMovies(term));
+        dispatch(setSearchField(term));
+        dispatch(moviesLoading());
+        const movieslist = await dispatch(fetchMovieIds(term));
         
         if(!movieslist.Error){
             const movieIds = movieslist.Search.map((item) => {
@@ -11,12 +13,15 @@ export const fetchMoviesWithDetails = (term) => {
                     item.imdbID
                 )
             });
-            movieIds.map((id) => dispatch(fetchDetails(id)));
+            movieIds.map((id) => dispatch(moviesFetch(id)));
+        }
+        else{
+            dispatch(moviesFailed(movieslist.Error));
         }
     }
 }
 
-const fetchMovies = (term) => {
+const fetchMovieIds = (term) => {
     console.log(term)
     return async (dispatch) => { 
         const response = await OMDBMovieApi.get(`/?apikey=${key}&s=${term}`);
@@ -25,13 +30,27 @@ const fetchMovies = (term) => {
     }
 }
 
-const fetchDetails = (id) => {
+const moviesFetch = (id) => {
     return async (dispatch) => {
         const response = await OMDBMovieApi.get(`/?apikey=${key}&i=${id}`);
-
+        console.log(response.data);
         dispatch({
-            type: 'FETCH_DETAILS',
+            type: 'MOVIES_FETCHED',
             payload: response.data
         })
     }
 }
+
+const setSearchField = (term) => ({
+    type: 'SET_SEARCH_FIELD',
+    payload: term
+})
+
+const moviesLoading = () => ({
+    type: 'MOVIES_LOADING'
+});
+
+const moviesFailed = (errmess) => ({
+    type: 'MOVIES_FAILED',
+    payload: errmess
+});
