@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchMoviesWithDetails } from '../../redux/ActionCreater';
+import { fetchMoviesWithDetails } from '../../redux/Movies/ActionCreater';
 
 import SearchBar from '../SearchBar';
-import MovieCard from './BookCard';
+import MovieCard from './MovieCard';
 
 const mapStateToProps = (state) => {
     return {
@@ -28,15 +28,18 @@ class MovieList extends React.Component{
 
     render(){
         console.log(this.props.movielist);
-        const { isLoading, errMess, movies } = this.props.movielist;
+        const { isLoading, errMess, searchTerm, movies } = this.props.movielist;
         let showCards;
-        if(isLoading){
+        if(!searchTerm){
+            showCards = <h1>Please Enter movie name</h1>
+        }
+        else if(isLoading){
             showCards = <h1>Loading...</h1>
         }
         else if(errMess){
             console.log(errMess);
             showCards = (
-                <p>Couldn't find any movie. Please search again using another search criteria.</p>
+                <h3>Couldn't find any movie. Please search again using another search criteria.</h3>
             )
         }
         else{

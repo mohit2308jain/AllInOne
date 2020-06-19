@@ -2,6 +2,19 @@ import React from 'react';
 
 import { Card, CardHeader, CardBody, CardTitle, CardSubtitle, CardText, CardFooter } from 'reactstrap';
 
+const showPoster = (Poster, Title) => {
+    if(Poster === 'N/A'){
+        return (
+            <h3 style={{color: 'white'}}>Poster Not Available..</h3>
+        )
+    }
+    else{
+        return(
+            <img src={Poster} alt={Title} />
+        )
+    }
+}
+
 const MovieCard =({movie}) => {
     
     const {
@@ -16,8 +29,8 @@ const MovieCard =({movie}) => {
     return (
         <div className="container my-1" style={{background: '#111'}}>
             <div className="row py-2 border border-dark">
-                <div className="col-sm-12 col-lg-4 col-md-6">
-                <img src={Poster} alt={Title}/>
+                <div className="col-sm-12 col-lg-4 col-md-6" style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
+                    {showPoster(Poster,Title)}
                 </div>
                 <div className="col-sm-12 col-lg-8 col-md-6" style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
                     <Card className="mr-4">

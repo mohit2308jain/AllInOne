@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchMoviesWithDetails } from '../../redux/ActionCreater';
+import { fetchMoviesWithDetails } from '../../redux/Movies/ActionCreater';
 
 import SearchBar from '../SearchBar';
 import MovieCard from './MovieCard';
@@ -39,7 +39,7 @@ class MovieList extends React.Component{
         else if(errMess){
             console.log(errMess);
             showCards = (
-                <p>Couldn't find any movie. Please search again using another search criteria.</p>
+                <h3>Couldn't find any movie. Please search again using another search criteria.</h3>
             )
         }
         else{
