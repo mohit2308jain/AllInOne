@@ -1,56 +1,48 @@
 import React from 'react';
 
-import { Card, CardHeader, CardBody, CardTitle, CardSubtitle, CardText, CardFooter } from 'reactstrap';
+import { Card, CardHeader, CardBody, CardTitle, CardSubtitle, CardImg, CardFooter, Button } from 'reactstrap';
 
-const showPoster = (Poster, Title) => {
-    if(Poster === 'N/A'){
-        return (
-            <h3 style={{color: 'white'}}>Poster Not Available..</h3>
-        )
+const showAuthors = (authors) => {
+
+    let authorText = '';
+    for(let i=0;i<authors.length;i++){
+        (i===authors.length-1) ? (authorText += authors[i]) :(authorText += (authors[i] + ', '))
     }
-    else{
-        return(
-            <img src={Poster} alt={Title} />
-        )
-    }
+    return authorText;
 }
 
-const MovieCard =({movie}) => {
+const BookCard =({book, key}) => {
     
-    const {
-        Title,
-        Released,
-        Genre,
-        Plot,
-        Poster,
-        imdbRating
-    } = movie;
-
+    const { title, language, authors, publisher, previewLink, infoLink, pageCount } = book.volumeInfo;
+    const Poster = book.volumeInfo.imageLinks;
+    let showPoster;
+    if(!Poster){
+        showPoster = (<h3 style={{color: 'white'}}>Poster Not Available..</h3>);
+    }
+    else{
+        showPoster = (<CardImg top width="320px" height="240px" src={Poster.thumbnail} alt={title} />)
+    }
+    //console.log("print: ",authors);
+    
     return (
-        <div className="container my-1" style={{background: '#111'}}>
-            <div className="row py-2 border border-dark">
-                <div className="col-sm-12 col-lg-4 col-md-6" style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
-                    {showPoster(Poster,Title)}
-                </div>
-                <div className="col-sm-12 col-lg-8 col-md-6" style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
-                    <Card className="mr-4">
-                        <CardHeader className="h1">{Title}</CardHeader>
-                        <CardBody>
-                            <CardTitle>Rating: {imdbRating} / 10</CardTitle>
-                            <CardSubtitle>Released Date: {Released}</CardSubtitle>
-                            <CardText>
-                                {Plot}
-                            </CardText>
-                        </CardBody>
-                        <CardFooter>
-                            {Genre && Genre.split(', ').map(g => 
-                            <span className="badge badge-light border border-dark m-1">{g}</span>)}
-                        </CardFooter>
-                    </Card>
-                </div>
-            </div>
+        <div className="col-12 col-md-4 my-2">
+            <Card style={{background: 'black', color: 'white', border: 'solid blue 5px'}}>
+                <CardHeader className="h1">{title}</CardHeader>
+                {showPoster}
+                <CardBody>
+                    <CardTitle>Authors: {showAuthors(authors)}</CardTitle>
+                    <CardSubtitle>
+                        Language: {language} | PageCount: {pageCount}
+                        <br />Publisher: {publisher}
+                    </CardSubtitle>
+                    </CardBody>
+                <CardFooter>
+                    <Button color="primary" onClick={() => window.open(previewLink, "_blank")} className="mr-2">See Preview</Button>
+                    <Button color="primary" onClick={() => window.open(infoLink, "_blank")}>See Info</Button>
+                </CardFooter>
+            </Card>
         </div>
     );
 }
 
-export default MovieCard;
+export default BookCard;

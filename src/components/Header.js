@@ -1,5 +1,6 @@
 import React from 'react';
-import { Navbar, NavbarToggler, Collapse, Nav, NavItem, NavLink } from 'reactstrap';
+import { Navbar, NavbarToggler, Collapse, Nav, NavItem } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
 
 class Header extends React.Component{
     state = {
@@ -13,17 +14,24 @@ class Header extends React.Component{
     render(){
         return(
             <React.Fragment>
-                <Navbar color="light" light expand="md">
-                    <NavbarToggler onClick={() => this.toggleNav()} />
-                    <Collapse isOpen={this.state.isNavOpen} navbar>
-                        <Nav className="mr-auto" navbar>
-                            <NavItem>
-                            <NavLink href="/components/">Components</NavLink>
-                            </NavItem>
-                        </Nav>
-                    </Collapse>
+                <Navbar dark expand="md" style={{fontWeight: 'bolder', background:'black', textcolor:' white'}}>
+                    <div className="container">
+                        <NavbarToggler onClick={() => this.toggleNav()} />
+                        <Collapse isOpen={this.state.isNavOpen} navbar>
+                            <Nav className="mr-auto" navbar>
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/movies">Movies</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/books">Books</NavLink>
+                                </NavItem>
+                            </Nav>
+                        </Collapse>
+                    </div>
                 </Navbar>
             </React.Fragment>
         )
     }
 }
+
+export default Header;

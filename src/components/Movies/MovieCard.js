@@ -17,14 +17,7 @@ const showPoster = (Poster, Title) => {
 
 const MovieCard =({movie}) => {
     
-    const {
-        Title,
-        Released,
-        Genre,
-        Plot,
-        Poster,
-        imdbRating
-    } = movie;
+    const { Title, Released, Genre, Plot, Poster, imdbRating } = movie;
 
     return (
         <div className="container my-1" style={{background: '#111'}}>

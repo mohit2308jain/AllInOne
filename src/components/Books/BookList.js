@@ -1,67 +1,65 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchMoviesWithDetails } from '../../redux/Movies/ActionCreater';
+import { fetchBooksWithDetails } from '../../redux/Books/ActionCreater';
 
 import SearchBar from '../SearchBar';
-import MovieCard from './MovieCard';
+import BookCard from './BookCard';
 
 const mapStateToProps = (state) => {
     return {
-        movielist: state.movielist
+        booklist: state.booklist
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return({
-        fetchMovies: (term) => {
-            return dispatch(fetchMoviesWithDetails(term));
+        fetchbooks: (term) => {
+            return dispatch(fetchBooksWithDetails(term));
         }
     })
 }
 
-class MovieList extends React.Component{
+class BookList extends React.Component{
 
     onSearch = (term) => {
-        this.props.fetchMovies(term);
+        this.props.fetchbooks(term);
     }
 
     render(){
-        console.log(this.props.movielist);
-        const { isLoading, errMess, searchTerm, movies } = this.props.movielist;
+        console.log("op:", this.props.booklist);
+        const { isLoading, errMess, searchTerm, books } = this.props.booklist;
         let showCards;
         if(!searchTerm){
-            showCards = <h1>Please Enter movie name</h1>
+            showCards = <h1>Please Enter Book Name..</h1>
         }
         else if(isLoading){
             showCards = <h1>Loading...</h1>
         }
         else if(errMess){
-            console.log(errMess);
-            showCards = (
-                <h3>Couldn't find any movie. Please search again using another search criteria.</h3>
-            )
+            showCards = <h3>{errMess}</h3>
         }
         else{
-            showCards = movies.map((movie) => {
-                return(
-                    <div>
-                        <MovieCard movie={movie} key={movie.imdbID} />
-                    </div>
+            //console.log("Book: ", books)
+            const book = books.map((book, index) => {
+                return (
+                    <BookCard book={book} key={index} />
                 )
             })
-        }
-             
+            showCards = (<div className="row border border-dark">
+                {book}
+            </div>)
+        } 
         return(
             <React.Fragment>
                 <div className="container">
-                <SearchBar onInput={(term) => this.onSearch(term)} />
-                <hr />
-                {showCards}
+                    <SearchBar onInput={(term) => this.onSearch(term)} />
+                    <hr />
+                    {showCards} 
                 </div>
             </React.Fragment>
         );
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MovieList);
+export default connect(mapStateToProps, mapDispatchToProps)(BookList);

@@ -27,11 +27,11 @@ class MovieList extends React.Component{
     }
 
     render(){
-        console.log(this.props.movielist);
+        //console.log(this.props.movielist);
         const { isLoading, errMess, searchTerm, movies } = this.props.movielist;
         let showCards;
         if(!searchTerm){
-            showCards = <h1>Please Enter movie name</h1>
+            showCards = <h1>Please Enter Movie Name..</h1>
         }
         else if(isLoading){
             showCards = <h1>Loading...</h1>
@@ -55,10 +55,10 @@ class MovieList extends React.Component{
         return(
             <React.Fragment>
                 <div className="container">
-                <SearchBar onInput={(term) => this.onSearch(term)} />
-                <hr />
-                {showCards}
-                </div>
+                    <SearchBar onInput={(term) => this.onSearch(term)} />
+                    <hr />
+                    {showCards}
+                    </div>
             </React.Fragment>
         );
     }

@@ -36,7 +36,7 @@ const fetchMovieIds = (term) => {
 const moviesFetch = (id) => {
     return async (dispatch) => {
         const response = await OMDBMovieApi.get(`/?apikey=${key}&i=${id}`);
-        console.log(response.data);
+        //console.log(response.data);
         dispatch({
             type: MOVIES_FETCHED,
             payload: response.data
