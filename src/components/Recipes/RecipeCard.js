@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { Card, CardHeader, CardBody, CardTitle, CardSubtitle, CardImg, CardFooter, Button } from 'reactstrap';
+import { Card, CardHeader, CardBody, CardTitle, CardSubtitle, 
+    CardImg, CardFooter, Button,Modal, ModalHeader, ModalBody, 
+    ModalFooter, ListGroup, ListGroupItem } from 'reactstrap';
 
 const showLabels = (labels) => {
 
@@ -14,7 +16,13 @@ const showLabels = (labels) => {
 
 const RecipeCard =({recipe, key, id}) => {
     
-    const { label, image, calories, totalTime, totalWeight, ingredients, ingredientLines, healthLabels } = recipe.recipe;
+    const { label, image, calories, totalTime, ingredients, healthLabels } = recipe.recipe;
+
+    let steps = [];
+    ingredients.map((item) => {
+        return steps.push(item.text);
+    })
+    
     const Poster = image;
     let showPoster;
     if(!Poster){
@@ -23,26 +31,70 @@ const RecipeCard =({recipe, key, id}) => {
     else{
         showPoster = (<CardImg top width="320px" height="240px" src={Poster} alt={label} />)
     }
-    //console.log("print: ",authors);
     
     return (
         <div className="col-12 col-md-6 col-lg-4 my-2">
             <Card style={{background: 'black', color: 'white', border: 'solid blue 5px'}}>
                 <CardHeader className="h1">{label}</CardHeader>
                 {showPoster}
-                <CardBody>
+                <CardBody style={{background: '#111'}}>
                     <CardTitle>{showLabels(healthLabels)}</CardTitle>
                     <CardSubtitle>
-                        Calries: {calories}
+                        Calories: {calories}
                         <br />Total Time: {totalTime}
-                        <br />Total Weight: {totalWeight}
                     </CardSubtitle>
                     </CardBody>
                 <CardFooter>
-                    </CardFooter>
+                    <ShowModals data={steps} label="Ingredients" />
+                </CardFooter>
             </Card>
         </div>
     );
 }
 
 export default RecipeCard;
+
+const showLists = (data) => {
+    const steps = (
+        <ListGroup>
+            {
+                data.map((item) => {
+                    return (<ListGroupItem className="list-group-item">{item}</ListGroupItem>);
+                })
+            }
+        </ListGroup>
+    )
+
+    return steps;
+}
+
+class ShowModals extends React.Component{
+
+    state = {
+        isModalOpen: false
+    }
+
+    toggleModal = (event) => {
+        this.setState({isModalOpen: !this.state.isModalOpen});
+    }
+
+    render(){
+
+        const { data, label } = this.props;
+        return(
+            <React.Fragment>
+                <Button color="primary" className="mr-2" onClick={this.toggleModal}>
+                        Show {label}</Button>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                    <ModalHeader toggle={this.toggleModal}>{label}</ModalHeader>
+                    <ModalBody>
+                        {showLists(data)}
+                    </ModalBody>
+                    <ModalFooter>
+                    <Button color="secondary" onClick={this.toggleModal}>Close</Button>
+                    </ModalFooter>
+                </Modal>
+            </React.Fragment>
+        )
+    }
+}

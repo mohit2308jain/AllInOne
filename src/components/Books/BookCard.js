@@ -29,7 +29,7 @@ const BookCard =({book, key, id}) => {
             <Card style={{background: 'black', color: 'white', border: 'solid blue 5px'}}>
                 <CardHeader className="h1">{title}</CardHeader>
                 {showPoster}
-                <CardBody>
+                <CardBody style={{background: '#111'}}>
                     <CardTitle>Authors: {showAuthors(authors)}</CardTitle>
                     <CardSubtitle>
                         Language: {language} | PageCount: {pageCount}

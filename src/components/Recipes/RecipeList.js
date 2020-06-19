@@ -43,7 +43,6 @@ class RecipeList extends React.Component{
         }
         else{
             const recipe = recipes.map((recipe, index) => {
-                console.log(index)
                 return (
                     <RecipeCard recipe={recipe} key={index} id={index} />
                 )
