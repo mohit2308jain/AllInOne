@@ -1,12 +1,10 @@
 import OMDBMovieApi from '../../apis/OMDBMovieApi';
-import { SET_SEARCH_FIELD, MOVIES_FAILED, MOVIES_FETCHED, MOVIES_LOADING } from '../Actions';
+import { MOVIES_FAILED, MOVIES_FETCHED, MOVIES_LOADING } from '../Actions';
 
 const key = '756abb2f';
 export const fetchMoviesWithDetails = (term) => {
     return async (dispatch) => {
-        dispatch(setSearchField(term));
-
-        dispatch(moviesLoading());
+        dispatch(moviesLoading(term));
 
         const movieslist = await dispatch(fetchMovieIds(term));
         
@@ -25,7 +23,6 @@ export const fetchMoviesWithDetails = (term) => {
 }
 
 const fetchMovieIds = (term) => {
-    console.log(term)
     return async (dispatch) => { 
         const response = await OMDBMovieApi.get(`/?apikey=${key}&s=${term}`);
 
@@ -44,18 +41,9 @@ const moviesFetch = (id) => {
     }
 }
 
-const setSearchField = (term) => {
-    return (dispatch) => {
-
-        dispatch({
-            type: SET_SEARCH_FIELD,
-            payload: term
-        })
-    }
-}
-
-const moviesLoading = () => ({
-    type: MOVIES_LOADING
+const moviesLoading = (term) => ({
+    type: MOVIES_LOADING,
+    payload: term
 });
 
 const moviesFailed = (errmess) => ({

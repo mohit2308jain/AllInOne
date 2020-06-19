@@ -27,7 +27,6 @@ class BookList extends React.Component{
     }
 
     render(){
-        console.log("op:", this.props.booklist);
         const { isLoading, errMess, searchTerm, books } = this.props.booklist;
         let showCards;
         if(!searchTerm){

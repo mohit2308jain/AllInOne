@@ -1,5 +1,5 @@
 import GoogleBooksApi from '../../apis/GoogleBooksApi';
-import { SET_SEARCH_FIELD, BOOKS_LOADING, BOOKS_FAILED, BOOKS_FETCHED } from '../Actions';
+import { BOOKS_LOADING, BOOKS_FAILED, BOOKS_FETCHED } from '../Actions';
 
 const maxResults = 20;
 const startIndex = 1;
@@ -12,27 +12,16 @@ export const fetchBooksWithDetails = (term) => {
             dispatch(booksFailed(searchTermEmpty))
         }
         else{
-            dispatch(setSearchField(term));
-
-            dispatch(booksLoading());
+            dispatch(booksLoading(term));
 
             await dispatch(booksFetch(term));
         }
     }
 }
 
-const setSearchField = (term) => {
-    return (dispatch) => {
-
-        dispatch({
-            type: SET_SEARCH_FIELD,
-            payload: term
-        })
-    }
-}
-
-const booksLoading = () => ({
-    type: BOOKS_LOADING
+const booksLoading = (term) => ({
+    type: BOOKS_LOADING,
+    payload: term
 });
 
 const booksFetch = (term) => {
