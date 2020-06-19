@@ -11,7 +11,7 @@ const showAuthors = (authors) => {
     return authorText;
 }
 
-const BookCard =({book, key}) => {
+const BookCard =({book, key, id}) => {
     
     const { title, language, authors, publisher, previewLink, infoLink, pageCount } = book.volumeInfo;
     const Poster = book.volumeInfo.imageLinks;

@@ -43,10 +43,10 @@ class MovieList extends React.Component{
             )
         }
         else{
-            showCards = movies.map((movie) => {
+            showCards = movies.map((movie, index) => {
                 return(
                     <div>
-                        <MovieCard movie={movie} key={movie.imdbID} />
+                        <MovieCard movie={movie} key={movie.imdbID} id={movie.imdbID}/>
                     </div>
                 )
             })

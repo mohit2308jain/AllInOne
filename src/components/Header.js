@@ -25,6 +25,9 @@ class Header extends React.Component{
                                 <NavItem>
                                     <NavLink className="nav-link" to="/books">Books</NavLink>
                                 </NavItem>
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/recipes">Recipes</NavLink>
+                                </NavItem>
                             </Nav>
                         </Collapse>
                     </div>

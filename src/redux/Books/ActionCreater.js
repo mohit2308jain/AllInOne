@@ -26,7 +26,7 @@ const booksLoading = (term) => ({
 
 const booksFetch = (term) => {
     return async (dispatch) => {
-        const response = await  GoogleBooksApi.get(`/volumes?q=${term}&maxResults=${maxResults}&startIndex=${startIndex}`);
+        const response = await GoogleBooksApi.get(`/volumes?q=${term}&maxResults=${maxResults}&startIndex=${startIndex}`);
         //console.log(response.data.items);
         if(response.data.totalItems===0){
             dispatch(booksFailed(invalidSearchTerm));

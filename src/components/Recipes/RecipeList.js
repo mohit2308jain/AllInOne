@@ -1,36 +1,39 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { fetchBooksWithDetails } from '../../redux/Books/ActionCreater';
+import { fetchRecipesWithDetails } from '../../redux/Recipes/ActionCreater';
 
 import SearchBar from '../SearchBar';
-import BookCard from './BookCard';
+import RecipeCard from './RecipeCard';
 
 const mapStateToProps = (state) => {
     return {
-        booklist: state.booklist
+        recipelist: state.recipelist
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return({
-        fetchbooks: (term) => {
-            return dispatch(fetchBooksWithDetails(term));
+        fetchrecipes: (term) => {
+            return dispatch(fetchRecipesWithDetails(term));
         }
     })
 }
 
-class BookList extends React.Component{
+class RecipeList extends React.Component{
 
     onSearch = (term) => {
-        this.props.fetchbooks(term);
+        this.props.fetchrecipes(term);
     }
 
     render(){
-        const { isLoading, errMess, searchTerm, books } = this.props.booklist;
+        console.log(this.props.recipelist.recipes);
+        
+        
+        const { isLoading, errMess, searchTerm, recipes } = this.props.recipelist;
         let showCards;
         if(!searchTerm){
-            showCards = <h1>Please Enter Book Name..</h1>
+            showCards = <h1>Please Enter Dish Name..</h1>
         }
         else if(isLoading){
             showCards = <h1>Loading...</h1>
@@ -39,16 +42,17 @@ class BookList extends React.Component{
             showCards = <h3>{errMess}</h3>
         }
         else{
-            //console.log("Book: ", books)
-            const book = books.map((book, index) => {
+            const recipe = recipes.map((recipe, index) => {
+                console.log(index)
                 return (
-                    <BookCard book={book} key={index} id={index} />
+                    <RecipeCard recipe={recipe} key={index} id={index} />
                 )
             })
             showCards = (<div className="row border border-dark">
-                {book}
+                {recipe}
             </div>)
         } 
+        
         return(
             <React.Fragment>
                 <div className="container">
@@ -61,4 +65,4 @@ class BookList extends React.Component{
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(BookList);
+export default connect(mapStateToProps, mapDispatchToProps)(RecipeList);

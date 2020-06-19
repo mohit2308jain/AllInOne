@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import { movieDetailsReducer } from './Movies/MovieReducer';
 import { bookDetailsReducer } from './Books/BookReducer';
+import { recipeDetailsReducer } from './Recipes/RecipeReducer';
 
 export default combineReducers({
     movielist: movieDetailsReducer,
-    booklist: bookDetailsReducer
+    booklist: bookDetailsReducer,
+    recipelist: recipeDetailsReducer
 });
