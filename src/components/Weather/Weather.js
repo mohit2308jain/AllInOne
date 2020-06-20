@@ -1,8 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
+//import './a.css';
 
 import SearchBar from '../SearchBar';
+import LocationCard from './LocationCard';
+import CityCard from './CityCard';
 
 import { fetchWeatherByLocation, fetchWeatherFromCityName } from '../../redux/Weather/ActionCreater';
 
@@ -24,6 +27,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class Weather extends React.Component{
+
     componentDidMount(){
         this.fetchLocation();
     }
@@ -44,8 +48,7 @@ class Weather extends React.Component{
     }
 
     render(){
-        const { weather, isLoading, errMess } = this.props.weather;
-        console.log(weather)
+        const { cityWeather, locationWeather, isLoading, errMess } = this.props.weather;
         let showData;
         if(isLoading){
             showData = <h1>Loading...</h1>
@@ -54,7 +57,14 @@ class Weather extends React.Component{
             showData = <h1>{errMess}</h1>
         }
         else{
-            showData = <h1>Weather</h1>
+            if(Object.keys(cityWeather).length){
+                console.log(cityWeather);
+                showData = <div className="row"><CityCard weather={cityWeather} /></div>
+            }
+            else if(Object.keys(locationWeather).length){
+                console.log(locationWeather);
+                showData = <div className="row"><LocationCard weather={locationWeather} /></div>
+            }
         }
 
         return(
@@ -68,8 +78,8 @@ class Weather extends React.Component{
                             <Button onClick={() => this.onCurrentLocation()}>Current Location</Button>
                         </div>
                     </div>
-                    <hr />
-                    {showData} 
+                    <hr />    
+                    {showData}
                 </div>
             </React.Fragment>
         )

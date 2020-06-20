@@ -1,0 +1,13 @@
+.cold{
+    background: linear-gradient(90deg, #FF5EDF 0%, #04C8DE) !important;
+}
+
+.warm{
+    background: linear-gradient(90deg, #FF8C00 , blue) !important;
+}
+
+.weathercard{
+    font-weight: bolder !important;
+    font-family: inherit;
+    font-size: xx-large;
+}

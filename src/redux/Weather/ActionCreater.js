@@ -17,7 +17,7 @@ export const fetchWeatherFromCityName = (term) => {
 
             let response;
             try{
-                response = await OpenWeatherMapApi.get(`/weather?q=${term}&appid=${API_KEY}`);
+                response = await OpenWeatherMapApi.get(`/weather?q=${term}&units=metric&appid=${API_KEY}`);
                 dispatch({
                     type: WEATHER_FETCHED_FROM_CITY,
                     payload: response.data
@@ -38,7 +38,7 @@ export const fetchWeatherByLocation = (lat, lon) => {
         else{
             dispatch(weatherLoading());
 
-            const response = await OpenWeatherMapApi.get(`/onecall?lat=${lat}&lon=${lon}&exclude=minutely&appid=${API_KEY}`);
+            const response = await OpenWeatherMapApi.get(`/onecall?lat=${lat}&lon=${lon}&exclude=minutely&units=metric&appid=${API_KEY}`);
             dispatch({
                 type: WEATHER_FETCHED_FROM_LOCATION,
                 payload: response.data
