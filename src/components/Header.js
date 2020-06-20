@@ -7,6 +7,10 @@ class Header extends React.Component{
         isNavOpen: false
     }
 
+    closeNavBar = (event) => {
+        this.setState({isNavOpen: false})
+    }
+
     toggleNav = () => {
         this.setState({isNavOpen: !this.state.isNavOpen});
     }
@@ -19,14 +23,19 @@ class Header extends React.Component{
                         <NavbarToggler onClick={() => this.toggleNav()} />
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav className="mr-auto" navbar>
-                                <NavItem>
+                                <NavItem onClick={(event) => this.closeNavBar(event)}>
                                     <NavLink className="nav-link" to="/movies">Movies</NavLink>
                                 </NavItem>
-                                <NavItem>
+                                <NavItem onClick={(event) => this.closeNavBar(event)}>
                                     <NavLink className="nav-link" to="/books">Books</NavLink>
                                 </NavItem>
-                                <NavItem>
+                                <NavItem onClick={(event) => this.closeNavBar(event)}>
                                     <NavLink className="nav-link" to="/recipes">Recipes</NavLink>
+                                </NavItem>
+                            </Nav>
+                            <Nav navbar>
+                                <NavItem onClick={(event) => this.closeNavBar(event)}>
+                                    <NavLink className="nav-link" to="/weather">Weather</NavLink>
                                 </NavItem>
                             </Nav>
                         </Collapse>

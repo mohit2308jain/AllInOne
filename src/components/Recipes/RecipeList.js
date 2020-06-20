@@ -27,9 +27,7 @@ class RecipeList extends React.Component{
     }
 
     render(){
-        console.log(this.props.recipelist.recipes);
-        
-        
+        //console.log(this.props.recipelist.recipes);
         const { isLoading, errMess, searchTerm, recipes } = this.props.recipelist;
         let showCards;
         if(!searchTerm){

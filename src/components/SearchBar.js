@@ -10,6 +10,7 @@ class SearchBar extends React.Component{
     onSubmitTerm = (event) => {
         event.preventDefault();
         this.props.onInput(this.state.searchTerm);
+        this.setState({searchTerm: ''});
     }
 
     onInputChange = (event) => {
@@ -21,7 +22,7 @@ class SearchBar extends React.Component{
             <React.Fragment>
                 <div className="container">
                     <Form onSubmit={(event) => this.onSubmitTerm(event)}>
-                        <Input type="text" onChange={(event) => this.onInputChange(event)} />
+                        <Input type="text" value={this.state.searchTerm} onChange={(event) => this.onInputChange(event)} />
                     </Form>
                 </div>
             </React.Fragment>
