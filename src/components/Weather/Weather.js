@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 //import './a.css';
 
-import SearchBar from '../SearchBar';
+import SearchBar from '../SearchBarWeather';
 import LocationCard from './LocationCard';
 import CityCard from './CityCard';
 
@@ -59,11 +59,11 @@ class Weather extends React.Component{
         else{
             if(Object.keys(cityWeather).length){
                 console.log(cityWeather);
-                showData = <div className="row"><CityCard weather={cityWeather} /></div>
+                showData = <CityCard weather={cityWeather} />
             }
             else if(Object.keys(locationWeather).length){
                 console.log(locationWeather);
-                showData = <div className="row"><LocationCard weather={locationWeather} /></div>
+                showData = <LocationCard weather={locationWeather} />
             }
         }
 
@@ -71,16 +71,18 @@ class Weather extends React.Component{
             <React.Fragment>
                 <div className="container">
                     <div className="row">
-                        <div className="col-6 col-md-9">
+                        <div className="col-8">
                             <SearchBar onInput={(term) => this.onSearch(term)} />
                         </div>
-                        <div className="col-6 col-md-3">
-                            <Button onClick={() => this.onCurrentLocation()}>Current Location</Button>
+                        <div className="col-4 offset-md-1 col-md-3">
+                            <Button className="fa fa-map-marker font-weight-bold" color="danger" onClick={() => this.onCurrentLocation()}>
+                                <span>  </span>  Current Location
+                            </Button>
                         </div>
                     </div>
-                    <hr />    
-                    {showData}
-                </div>
+                    <hr /> 
+                </div>  
+                {showData}
             </React.Fragment>
         )
     }

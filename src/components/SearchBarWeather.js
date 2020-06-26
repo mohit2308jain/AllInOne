@@ -22,8 +22,7 @@ class SearchBar extends React.Component{
             <React.Fragment>
                 <div className="container">
                     <div className="row">
-                        <div className="col-md-3 col-2"></div>
-                        <div className="ml-4 col-6 col-md-4">
+                        <div className="col-6 col-md-4">
                         <Input type="text" value={this.state.searchTerm} onChange={(event) => this.onInputChange(event)} />
                         </div>
                         <div className="col-1 pl-0">

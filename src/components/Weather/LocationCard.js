@@ -7,9 +7,9 @@ import "weather-icons/css/weather-icons.css";
 const LocationCard = ({weather}) => {
     console.log(weather);
     return(
-        <React.Fragment>
-            <div className='col-12 weathercard'>
-                <Card className={`${(weather.current.temp>24)?'warm':'cold'}`}>
+            <div className='col-12'>
+                <Card className={`${(weather.current.temp>24)?'warm snowflake':'cold sun'} weathercard`}>
+                    <i className={`${(weather.current.temp>24)?'sun':'snowflake'} icon huge icon-left`} />
                     <CardHeader>{weather.timezone}</CardHeader>
                     <CardBody>
                     <CardTitle>Temperature: {weather.current.temp} &deg;C</CardTitle>
@@ -18,9 +18,9 @@ const LocationCard = ({weather}) => {
                     </CardSubtitle>
                     <CardText>{weather.current.weather[0].description}</CardText>
                     </CardBody>
+                    <i className={`${(weather.current.temp>24)?'sun':'snowflake'} icon huge icon-right`} />
                 </Card>
             </div>
-        </React.Fragment>
     )
 }
 
