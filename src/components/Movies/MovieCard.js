@@ -30,7 +30,7 @@ const MovieCard =({movie}) => {
                         <CardHeader className="h1">{Title}</CardHeader>
                         <CardBody>
                             <CardTitle>Rating: {imdbRating} / 10</CardTitle>
-                            <CardSubtitle>Released Date: {Released}</CardSubtitle>
+                            <CardSubtitle>Release Date: {Released}</CardSubtitle>
                             <CardText>
                                 {Plot}
                             </CardText>
