@@ -25,7 +25,7 @@ const MovieCard =({movie}) => {
                 <div className="col-sm-12 col-lg-4 col-md-6" style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
                     {showPoster(Poster,Title)}
                 </div>
-                <div className="col-sm-12 col-lg-8 col-md-6" style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
+                <div className="col-sm-12 col-lg-8 ml-md-0 ml-sm-2 offset-1 col-md-6 my-2" style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
                     <Card className="mr-4">
                         <CardHeader className="h1">{Title}</CardHeader>
                         <CardBody>

@@ -25,7 +25,7 @@ const BookCard =({book, key, id}) => {
     //console.log("print: ",authors);
     
     return (
-        <div className="col-12 col-md-4 my-2">
+        <div className="col-12 col-md-6 col-lg-4 my-2">
             <Card style={{background: 'black', color: 'white', border: 'solid blue 5px'}}>
                 <CardHeader className="h1">{title}</CardHeader>
                 {showPoster}

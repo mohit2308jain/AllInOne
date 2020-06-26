@@ -56,7 +56,7 @@ class MovieList extends React.Component{
             <React.Fragment>
                 <div className="container">
                     <SearchBar onInput={(term) => this.onSearch(term)} />
-                    <hr />
+                    <hr className="border border-dark"/>
                     {showCards}
                     </div>
             </React.Fragment>
