@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Spinner } from 'reactstrap';
 
 import { fetchBooksWithDetails } from '../../redux/Books/ActionCreater';
 
 import SearchBar from '../SearchBar';
 import BookCard from './BookCard';
+import BookDetails from './BookDetails';
 
 const mapStateToProps = (state) => {
     return {
@@ -22,7 +24,20 @@ const mapDispatchToProps = (dispatch) => {
 
 class BookList extends React.Component{
 
+    state = {
+        selectedBook: ''
+    }
+
+    showBookDetails = (id) => {
+        this.setState({selectedBook: id});
+    }
+
+    showBookList = () => {
+        this.setState({selectedBook: ''})
+    }
+
     onSearch = (term) => {
+        this.setState({selectedBook: ''})
         this.props.fetchbooks(term);
     }
 
@@ -33,27 +48,37 @@ class BookList extends React.Component{
             showCards = <h1>Please Enter Book Name..</h1>
         }
         else if(isLoading){
-            showCards = <h1>Loading...</h1>
+            showCards = <div>
+                <Spinner style={{ width: '5rem', height: '5rem' }} color="danger" type="grow" />
+                <h1>Loading...</h1>
+                </div>
         }
         else if(errMess){
             showCards = <h3>{errMess}</h3>
         }
         else{
-            //console.log("Book: ", books)
-            const book = books.map((book, index) => {
-                return (
-                    <BookCard book={book} key={index} id={index} />
-                )
-            })
-            showCards = (<div className="row border border-dark">
-                {book}
-            </div>)
+            if(this.state.selectedBook===''){
+                const book = books.map((book, index) => {
+                    return(
+                        <BookCard book={book} key={book.id} id={book.id}
+                        onShowDetils={(id) => this.showBookDetails(id)}/>      
+                    )
+                })
+                showCards = (<div className="row border border-white">
+                    {book}
+                </div>)
+            }
+            else{
+                showCards = <BookDetails
+                    book={books.filter((book) => book.id === this.state.selectedBook)[0]}
+                    onShowList={() => this.showBookList()}/>
+            }
         } 
         return(
             <React.Fragment>
                 <div className="container">
                     <SearchBar onInput={(term) => this.onSearch(term)} />
-                    <hr />
+                    <hr className="border border-white"/>
                     {showCards} 
                 </div>
             </React.Fragment>

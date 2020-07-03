@@ -9,22 +9,25 @@ import RecipeList from './components/Recipes/RecipeList';
 import Weather from './components/Weather/Weather';
 import Header from './components/Header';
 
-function App() {
-  return (
-    <div className="App">
-      <BrowserRouter>
-        <Header />
-        <div className="mt-2"></div>
-        <Switch>
-          <Route path='/movies' component={MovieList} />
-          <Route path='/books' component={BookList} />
-          <Route path='/recipes' component={RecipeList} />
-          <Route path='/weather' component={Weather} />
-          <Redirect to='/movies' />
-        </Switch>
-      </BrowserRouter>
-    </div>
-  );
+class App extends React.Component {
+  
+  render(){
+    return (
+      <div className="App">
+        <BrowserRouter>
+          <Header />
+          <div className="mt-2"></div>
+          <Switch>
+            <Route path='/movies' component={MovieList} />
+            <Route path='/books' component={BookList} />
+            <Route path='/recipes' component={RecipeList} />
+            <Route path='/weather' component={Weather} />
+            <Redirect to='/movies' />
+          </Switch>
+        </BrowserRouter>
+      </div>
+    );
+  }
 }
 
 export default App;

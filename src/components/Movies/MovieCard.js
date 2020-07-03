@@ -1,26 +1,32 @@
 import React from 'react';
-
-import { Card, CardHeader, CardBody, CardTitle, CardSubtitle, CardText, CardFooter } from 'reactstrap';
+import { Card, CardHeader, CardBody, CardTitle, CardSubtitle, CardText, CardFooter, Button } from 'reactstrap';
 
 const showPoster = (Poster, Title) => {
     if(Poster === 'N/A'){
         return (
-            <h3 style={{color: 'white'}}>Poster Not Available..</h3>
+            <h3 style={{color: 'white'}} className="border border-white">Poster Not Available..</h3>
         )
     }
     else{
         return(
-            <img src={Poster} alt={Title} />
+            <img src={Poster} alt={Title}  className="border border-white"/>
         )
     }
 }
 
-const MovieCard =({movie}) => {
-    console.log(movie);
-    const { Title, Released, Genre, Plot, Poster, imdbRating } = movie;
+class MovieCard extends React.Component {
+
+    onShowDetils = (event) => {
+        event.preventDefault();
+        this.props.onShowDetils(this.props.movie.imdbID)
+    }
+
+    render(){
+        const { Title, Released, Genre, Plot, Poster, imdbRating } = this.props.movie;
 
     return (
-        <div className="container my-2" style={{background: 'linear-gradient(265.53deg,#152530 0%,#040203 100%)'}}>
+        <div className="container my-2" 
+            style={{background: 'linear-gradient(265.53deg, #152530 0%,#040203 100%)', color: 'black'}}>
             <div className="row py-2 border border-white">
                 <div className="col-sm-12 col-lg-4 col-md-6" style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
                     {showPoster(Poster,Title)}
@@ -39,11 +45,15 @@ const MovieCard =({movie}) => {
                             {Genre && Genre.split(', ').map(g => 
                             <span className="badge badge-light border border-dark m-1">{g}</span>)}
                         </CardFooter>
+                        <Button onClick={(event) => this.onShowDetils(event)} color="primary">
+                            More Details
+                        </Button>
                     </Card>
                 </div>
             </div>
         </div>
     );
+}
 }
 
 export default MovieCard;

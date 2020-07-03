@@ -80,8 +80,8 @@ class Weather extends React.Component{
                             </Button>
                         </div>
                     </div>
-                    <hr /> 
                 </div>  
+                <hr className="border border-white"/>
                 {showData}
             </React.Fragment>
         )

@@ -30,7 +30,7 @@ class Header extends React.Component{
                                     <NavLink className="nav-link" to="/books">Books</NavLink>
                                 </NavItem>
                                 <NavItem onClick={(event) => this.closeNavBar(event)}>
-                                    <NavLink className="nav-link" to="/recipes">Recipes</NavLink>
+                                    <NavLink className="nav-link" to="/recipes">Food</NavLink>
                                 </NavItem>
                             </Nav>
                             <Nav navbar>

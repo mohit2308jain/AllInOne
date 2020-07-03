@@ -35,7 +35,7 @@ const RecipeCard =({recipe, key, id}) => {
     return (
         <div className="col-12 col-md-6 col-lg-4 my-2">
             <Card style={{background: 'black', color: 'white', border: 'solid blue 5px'}}>
-                <CardHeader className="h1">{label}</CardHeader>
+                <CardHeader className="h4">{label}</CardHeader>
                 {showPoster}
                 <CardBody style={{background: '#111'}}>
                     <CardTitle>{showLabels(healthLabels)}</CardTitle>
@@ -85,13 +85,13 @@ class ShowModals extends React.Component{
             <React.Fragment>
                 <Button color="primary" className="mr-2" onClick={this.toggleModal}>
                         Show {label}</Button>
-                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+                <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal} style={{color: 'black'}}>
                     <ModalHeader toggle={this.toggleModal}>{label}</ModalHeader>
                     <ModalBody>
                         {showLists(data)}
                     </ModalBody>
                     <ModalFooter>
-                    <Button color="secondary" onClick={this.toggleModal}>Close</Button>
+                    <Button color="danger" onClick={this.toggleModal}>Close</Button>
                     </ModalFooter>
                 </Modal>
             </React.Fragment>

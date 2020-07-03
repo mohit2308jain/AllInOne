@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Spinner } from 'reactstrap';
 
 import { fetchRecipesWithDetails } from '../../redux/Recipes/ActionCreater';
 
@@ -34,7 +35,10 @@ class RecipeList extends React.Component{
             showCards = <h1>Please Enter Dish Name..</h1>
         }
         else if(isLoading){
-            showCards = <h1>Loading...</h1>
+            showCards = <div>
+                <Spinner style={{ width: '5rem', height: '5rem' }} color="danger" type="grow" />
+                <h1>Loading...</h1>
+                </div>
         }
         else if(errMess){
             showCards = <h3>{errMess}</h3>
@@ -45,7 +49,7 @@ class RecipeList extends React.Component{
                     <RecipeCard recipe={recipe} key={index} id={index} />
                 )
             })
-            showCards = (<div className="row border border-dark">
+            showCards = (<div className="row border border-white">
                 {recipe}
             </div>)
         } 
@@ -54,7 +58,7 @@ class RecipeList extends React.Component{
             <React.Fragment>
                 <div className="container">
                     <SearchBar onInput={(term) => this.onSearch(term)} />
-                    <hr />
+                    <hr className="border border-white"/>
                     {showCards} 
                 </div>
             </React.Fragment>
