@@ -8,7 +8,7 @@ const CityCard = ({weather}) => {
         <React.Fragment>
             <div className='col-12'>
                 <Card className={`${(weather.main.temp>24)?'warm snowflake':'cold'} weathercard`}>
-                    <i className={`${(weather.main.temp>24)?'sun':'snowflake'} icon huge icon-left`} />
+                    <br />
                     <CardHeader>{weather.name}, {weather.sys.country}</CardHeader>
                     <CardBody>
                     <CardTitle>Temperature: {weather.main.temp} &deg;C</CardTitle>
@@ -17,7 +17,10 @@ const CityCard = ({weather}) => {
                     </CardSubtitle>
                     <CardText>{weather.weather[0].description}</CardText>
                     </CardBody>
-                    <i className={`${(weather.main.temp>24)?'sun':'snowflake'} icon huge icon-right`} />
+                    <i className={`${(weather.main.temp>24)?'sun':'snowflake'} icon big icon-top-left`} />
+                    <i className={`${(weather.main.temp>24)?'sun':'snowflake'} icon big icon-top-right`} />
+                    <i className={`${(weather.main.temp>24)?'sun':'snowflake'} icon big icon-bottom-left`} />
+                    <i className={`${(weather.main.temp>24)?'sun':'snowflake'} icon big icon-bottom-right`} />
                 </Card>
             </div>
         </React.Fragment>

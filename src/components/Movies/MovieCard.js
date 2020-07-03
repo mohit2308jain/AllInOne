@@ -16,12 +16,12 @@ const showPoster = (Poster, Title) => {
 }
 
 const MovieCard =({movie}) => {
-    
+    console.log(movie);
     const { Title, Released, Genre, Plot, Poster, imdbRating } = movie;
 
     return (
-        <div className="container my-1" style={{background: '#111'}}>
-            <div className="row py-2 border border-dark">
+        <div className="container my-2" style={{background: 'linear-gradient(265.53deg,#152530 0%,#040203 100%)'}}>
+            <div className="row py-2 border border-white">
                 <div className="col-sm-12 col-lg-4 col-md-6" style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
                     {showPoster(Poster,Title)}
                 </div>

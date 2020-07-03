@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 //import './a.css';
 
-import SearchBar from '../SearchBarWeather';
+import SearchBar from './SearchBarWeather';
 import LocationCard from './LocationCard';
 import CityCard from './CityCard';
 

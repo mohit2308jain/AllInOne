@@ -9,7 +9,7 @@ const LocationCard = ({weather}) => {
     return(
             <div className='col-12'>
                 <Card className={`${(weather.current.temp>24)?'warm snowflake':'cold sun'} weathercard`}>
-                    <i className={`${(weather.current.temp>24)?'sun':'snowflake'} icon huge icon-left`} />
+                    <br />
                     <CardHeader>{weather.timezone}</CardHeader>
                     <CardBody>
                     <CardTitle>Temperature: {weather.current.temp} &deg;C</CardTitle>
@@ -18,7 +18,10 @@ const LocationCard = ({weather}) => {
                     </CardSubtitle>
                     <CardText>{weather.current.weather[0].description}</CardText>
                     </CardBody>
-                    <i className={`${(weather.current.temp>24)?'sun':'snowflake'} icon huge icon-right`} />
+                    <i className={`${(weather.current.temp>24)?'sun':'snowflake'} icon big icon-top-left`} />
+                    <i className={`${(weather.current.temp>24)?'sun':'snowflake'} icon big icon-top-right`} />
+                    <i className={`${(weather.current.temp>24)?'sun':'snowflake'} icon big icon-bottom-left`} />
+                    <i className={`${(weather.current.temp>24)?'sun':'snowflake'} icon big icon-bottom-right`} />
                 </Card>
             </div>
     )
