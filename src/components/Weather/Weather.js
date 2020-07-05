@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'reactstrap';
+import { Button, Spinner } from 'reactstrap';
 //import './a.css';
 
 import SearchBar from './SearchBarWeather';
@@ -51,7 +51,10 @@ class Weather extends React.Component{
         const { cityWeather, locationWeather, isLoading, errMess } = this.props.weather;
         let showData;
         if(isLoading){
-            showData = <h1>Loading...</h1>
+            showData = <div>
+                <Spinner style={{ width: '5rem', height: '5rem' }} color="danger" type="grow" />
+                <h1>Loading...</h1>
+                </div>
         }
         else if(errMess){
             showData = <h1>{errMess}</h1>

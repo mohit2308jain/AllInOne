@@ -57,12 +57,13 @@ class BookDetails extends React.Component{
 
                                 <div className="h4 mb-1">Languages</div>
                                 <div className="h5 mb-2">
-                                    {book.authors.map((author) => {
+                                    {(book.authors)?(
+                                        book.authors.map((author) => {
                                         return(
                                             <span><Badge color="success" className="border border-white m-2">
                                                 {author}
                                             </Badge></span>
-                                        )})
+                                        )})): <h5>No Authors Available</h5>
                                     }
                                 </div>
                             </div>

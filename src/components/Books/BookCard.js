@@ -5,8 +5,13 @@ import { Card, CardHeader, CardBody, CardTitle, CardSubtitle, CardImg, Button } 
 const showAuthors = (authors) => {
 
     let authorText = '';
-    for(let i=0;i<authors.length;i++){
-        (i===authors.length-1) ? (authorText += authors[i]) :(authorText += (authors[i] + ', '))
+    if(authors){
+        for(let i=0;i<authors.length;i++){
+            (i===authors.length-1) ? (authorText += authors[i]) :(authorText += (authors[i] + ', '))
+        }
+    }
+    else{
+        authorText = 'No Authors Available'
     }
     return authorText;
 }
