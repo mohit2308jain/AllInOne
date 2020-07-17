@@ -15,28 +15,28 @@ const SideNav = () => {
         
               <li className="nav-item">
                 <Link to='/movies' className="nav-link">
-                    <i className="fa fa-film" />
+                    <i className="fa fa-film dev" />
                   <span className="link-text">Movies</span>
                 </Link>
               </li>
 
               <li className="nav-item">
                 <Link to='/books' className="nav-link">
-                    <i className="fa fa-book" />
+                    <i className="fa fa-book dev" />
                   <span className="link-text">Books</span>
                 </Link>
               </li>
 
               <li className="nav-item">
                 <Link to='/recipes' className="nav-link">
-                    <i className="fa fa-cutlery" />
+                    <i className="fa fa-cutlery dev" />
                   <span className="link-text">Food</span>
                 </Link>
               </li>
         
               <li className="nav-item">
                 <Link to='/weather' className="nav-link">
-                    <i className="fa fa-sun-o" />
+                    <i className="fa fa-sun-o dev" />
                 <span className="link-text">Weather</span>
                 </Link>
               </li>
