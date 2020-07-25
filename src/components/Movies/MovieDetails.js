@@ -7,7 +7,8 @@ import { fetchSelectedMovie } from '../../redux/Movies/ActionCreater';
 
 const mapStateToProps = (state) => {
     return({
-        movie: state.movielist.selectedMovie
+        movie: state.movielist.selectedMovie,
+        isLoading: state.movielist.isDetailsLoading
     })
 }
 
@@ -55,7 +56,7 @@ class MovieDetails extends React.Component{
         console.log(this.props)
         const movie = this.props.movie;
 
-        if(!this.props.movie){
+        if(this.props.isLoading){
             return(
                 <div>
                     <Spinner style={{ width: '5rem', height: '5rem' }} color="danger" type="grow" />
@@ -63,7 +64,7 @@ class MovieDetails extends React.Component{
                 </div>
             )
         }
-        else{
+        else if(movie){
             return(
                 <div className="container">
                     <Link to='/movies'><Button color="danger" className="text-left m-2">
@@ -146,13 +147,13 @@ class MovieDetails extends React.Component{
                             </div>
                             <hr className="border-bottom border-white"/>
                         </CardBody>
-                        <Button color="danger">
-                            <Link to='/movies' className="text-light"><h4>Go back</h4></Link>
-                        </Button>
+                        <Link to='/movies' className="text-light bg-danger p-1"><h5>Go back</h5></Link>
                     </Card>
                 </div>
             )
-
+        }
+        else{
+            return <div>Error</div>
         }
     }
 }

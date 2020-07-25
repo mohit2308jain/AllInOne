@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Card, CardHeader, CardBody, CardTitle, CardSubtitle, CardText, CardFooter, Button } from 'reactstrap';
+import { Card, CardHeader, CardBody, CardTitle, CardSubtitle, CardText, CardFooter } from 'reactstrap';
 
 const showPoster = (Poster, Title) => {
     if(Poster === 'N/A'){
@@ -41,9 +41,7 @@ class MovieCard extends React.Component {
                             {Genre && Genre.split(', ').map(g => 
                             <span className="badge badge-light border border-dark m-1">{g}</span>)}
                         </CardFooter>
-                        <Button color="primary">
-                            <Link to={`/movies/${this.props.id}`} className="text-light">More Details</Link>
-                        </Button>
+                        <Link to={`/movies/${this.props.id}`} className="text-light bg-primary p-1">More Details</Link>
                     </Card>
                 </div>
             </div>
