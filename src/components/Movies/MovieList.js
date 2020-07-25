@@ -6,7 +6,6 @@ import { fetchMoviesWithDetails } from '../../redux/Movies/ActionCreater';
 
 import SearchBar from '../SearchBar';
 import MovieCard from './MovieCard';
-import MovieDetails from './MovieDetails';
 
 const mapStateToProps = (state) => {
     return {
@@ -23,20 +22,9 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class MovieList extends React.Component{
-    state = {
-        selectedMovie: ''
-    }
 
-    showMovieDetails = (id) => {
-        this.setState({selectedMovie: id});
-    }
-
-    showMovieList = () => {
-        this.setState({selectedMovie: ''})
-    }
 
     onSearch = (term) => {
-        this.setState({selectedMovie: ''})
         this.props.fetchMovies(term);
     }
 
@@ -60,21 +48,13 @@ class MovieList extends React.Component{
             )
         }
         else{
-            if(this.state.selectedMovie===''){
-                showCards = movies.map((movie, index) => {
-                    return(
-                        <div>
-                            <MovieCard movie={movie} key={movie.imdbID} id={movie.imdbID} 
-                            onShowDetils={(id) => this.showMovieDetails(id)}/>
-                        </div>
-                    )
-                })
-            }
-            else{
-                showCards = <MovieDetails
-                    movie={movies.filter((movie) => movie.imdbID === this.state.selectedMovie)[0]} 
-                    onShowList={() => this.showMovieList()}/>
-            }
+            showCards = movies.map((movie, index) => {
+                return(
+                    <div>
+                        <MovieCard movie={movie} key={movie.imdbID} id={movie.imdbID} />
+                    </div>
+                )
+            })
         }
              
         return(

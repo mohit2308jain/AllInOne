@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Card, CardHeader, CardBody, CardTitle, CardSubtitle, CardText, CardFooter, Button } from 'reactstrap';
 
 const showPoster = (Poster, Title) => {
@@ -15,11 +16,6 @@ const showPoster = (Poster, Title) => {
 }
 
 class MovieCard extends React.Component {
-
-    onShowDetils = (event) => {
-        event.preventDefault();
-        this.props.onShowDetils(this.props.movie.imdbID)
-    }
 
     render(){
         const { Title, Released, Genre, Plot, Poster, imdbRating } = this.props.movie;
@@ -45,8 +41,8 @@ class MovieCard extends React.Component {
                             {Genre && Genre.split(', ').map(g => 
                             <span className="badge badge-light border border-dark m-1">{g}</span>)}
                         </CardFooter>
-                        <Button onClick={(event) => this.onShowDetils(event)} color="primary">
-                            More Details
+                        <Button color="primary">
+                            <Link to={`/movies/${this.props.id}`} className="text-light">More Details</Link>
                         </Button>
                     </Card>
                 </div>

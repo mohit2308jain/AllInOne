@@ -1,5 +1,5 @@
 import OMDBMovieApi from '../../apis/OMDBMovieApi';
-import { MOVIES_FAILED, MOVIES_FETCHED, MOVIES_LOADING } from '../Actions';
+import { MOVIES_FAILED, MOVIES_FETCHED, MOVIES_LOADING, SELECTED_MOVIE_FETCHED } from '../Actions';
 
 const key = '756abb2f';
 export const fetchMoviesWithDetails = (term) => {
@@ -33,9 +33,20 @@ const fetchMovieIds = (term) => {
 const moviesFetch = (id) => {
     return async (dispatch) => {
         const response = await OMDBMovieApi.get(`/?apikey=${key}&i=${id}`);
-        //console.log(response.data);
+        
         dispatch({
             type: MOVIES_FETCHED,
+            payload: response.data
+        })
+    }
+}
+
+export const fetchSelectedMovie = (id) => {
+    return async (dispatch) => {
+        const response = await OMDBMovieApi.get(`/?apikey=${key}&i=${id}`);
+        
+        dispatch({
+            type: SELECTED_MOVIE_FETCHED,
             payload: response.data
         })
     }

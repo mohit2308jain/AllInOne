@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import './App.css';
 
 import MovieList from './components/Movies/MovieList';
+import MovieDetails from'./components/Movies/MovieDetails';
 import BookList from './components/Books/BookList';
 import RecipeList from './components/Recipes/RecipeList';
 import Weather from './components/Weather/Weather';
@@ -18,10 +19,11 @@ class App extends React.Component {
           <SideNav />
           <main>
           <Switch>
-            <Route path='/movies' component={MovieList} />
-            <Route path='/books' component={BookList} />
-            <Route path='/recipes' component={RecipeList} />
-            <Route path='/weather' component={Weather} />
+            <Route exact path='/movies' component={MovieList} />
+            <Route path="/movies/:id" component={MovieDetails} />
+            <Route exact path='/books' component={BookList} />
+            <Route exact path='/recipes' component={RecipeList} />
+            <Route exact path='/weather' component={Weather} />
             <Redirect to='/movies' />
           </Switch>
           </main>
