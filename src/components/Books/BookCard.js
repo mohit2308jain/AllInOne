@@ -33,12 +33,14 @@ class BookCard extends React.Component{
             showPoster = (<h3 style={{color: 'white'}}>Poster Not Available..</h3>);
         }
         else{
-            showPoster = (<CardImg top width="320px" height="240px" src={Poster.thumbnail} alt={title} />)
+            showPoster = (<CardImg top width="320px" height="240px"
+                style={{objectFit: 'cover'}} src={Poster.thumbnail} alt={title} />)
         }
         
         return (
-            <div className="col-12 col-md-6 col-lg-4 my-2">
-                <Card style={{background: 'black', color: 'white', border: 'solid blue 5px'}}>
+            <div className="d-flex col-12 col-md-6 col-lg-4 my-2">
+                <Card className="flex-fill" style={{background: 'black', color: 'white', 
+                    border: 'solid #23238E 5px', borderRadius: '25px'}}>
                     <CardHeader className="h4">{title}</CardHeader>
                     {showPoster}
                     <CardBody style={{background: '#111'}}>
@@ -48,7 +50,8 @@ class BookCard extends React.Component{
                             <br />Publisher: {publisher}
                         </CardSubtitle>
                         </CardBody>
-                    <Button onClick={(event) => this.onShowDetils(event)} color="light">
+                    <Button onClick={(event) => this.onShowDetils(event)} color="danger"
+                        style={{borderRadius: '0px 0px 20px 20px'}}>
                         More Details
                     </Button>
                 </Card>

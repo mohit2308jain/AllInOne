@@ -33,8 +33,9 @@ const RecipeCard =({recipe, key, id}) => {
     }
     
     return (
-        <div className="col-12 col-md-6 col-lg-4 my-2">
-            <Card style={{background: 'black', color: 'white', border: 'solid blue 5px'}}>
+        <div className="d-flex col-12 col-md-6 col-lg-4 my-2">
+            <Card className="flex-fill" style={{background: 'black', color: 'white', 
+                border: 'solid #23238E 5px', borderRadius: '25px'}}>
                 <CardHeader className="h4">{label}</CardHeader>
                 {showPoster}
                 <CardBody style={{background: '#111'}}>

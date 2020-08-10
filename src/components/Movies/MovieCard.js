@@ -10,7 +10,7 @@ const showPoster = (Poster, Title) => {
     }
     else{
         return(
-            <img src={Poster} alt={Title}  className="border border-white"/>
+            <img style={{objectFit: 'contain'}} src={Poster} alt={Title} />
         )
     }
 }
@@ -24,10 +24,12 @@ class MovieCard extends React.Component {
         <div className="container my-2" 
             style={{background: 'linear-gradient(265.53deg, #152530 0%,#040203 100%)', color: 'black'}}>
             <div className="row py-2 border border-white">
-                <div className="col-sm-12 col-lg-4 col-md-6" style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
+                <div className="col-sm-12 col-lg-4 col-md-6" 
+                    style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
                     {showPoster(Poster,Title)}
                 </div>
-                <div className="col-sm-12 col-lg-8 ml-md-0 ml-sm-2 offset-1 col-md-6 my-2" style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
+                <div className="col-sm-12 col-lg-8 ml-md-0 ml-sm-2 offset-1 col-md-6 my-2" 
+                    style={{display:'flex',justifyContent:'center', alignItems:'center'}}>
                     <Card className="mr-4">
                         <CardHeader className="h1">{Title}</CardHeader>
                         <CardBody>
