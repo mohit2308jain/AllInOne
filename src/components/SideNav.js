@@ -42,7 +42,7 @@ const SideNav = () => {
               </li>
 
               <li className="nav-item">
-                <div onClick={() => window.open('https://mohitjain.now.sh', "_blank")} className="nav-link">
+                <div onClick={() => window.open('https://mohit-jain.vercel.app', "_blank")} className="nav-link">
                     <i className="fa fa-heart dev" />
                 <span className="link-text">Mohit Jain</span>
                 </div>
